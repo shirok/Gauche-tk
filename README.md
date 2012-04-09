@@ -12,6 +12,9 @@ you need to use development HEAD of Gauche in order to use Gauche-tk.
 See http://practical-scheme.net/gauche/ for getting and compiling
 the HEAD.
 
+If you compile HEAD on Windows/MinGW, I'd recommend to configure it
+with --enable-threads=win32.
+
 
 ## A simple example
 
@@ -22,8 +25,9 @@ the HEAD.
     (tk-pack '.b)
     (tk-mainloop)
 
-This creates a button and set a callback which will be called when
-the button is clicked.  
+This code creates a button and set a callback which will be called when
+the button is clicked.  If you know Tcl/Tk, you can make sense, although
+the syntax is slightly different.
 
 `tk-init` initializes tk subsystem.  It invokes wish process.
 
@@ -53,6 +57,15 @@ event loop, call `tk-mainloop` with `background` keyword argument:
 
 This runs the event loop in a separate thread, enabling you to
 keep working in REPL prompt.
+
+In Tcl/Tk, the `button .b` command creates a new command `.b`,
+which can be subsequently used to change the button's behavior
+and queries its attributes.  In Scheme, you need to use `tk-call`
+command.  The following code first queries the current text
+value of the button, then change it.
+
+    (tk-call '.b 'cget :text)
+    (tk-call '.b 'configure :text "Don't click me")
 
 
 ## Graceful termination
@@ -121,8 +134,9 @@ variable.
 
 Gauche-tk provides APIs corresponding to Tk commands available
 in Tcl/Tk 8.4 (e.g. `tk-bind` for `bind` Tk command).  If you want
-to use other Tcl/Tk command, you can use `tk-call`.  It takes a list
-and send it over to Tk process, then receives the result as a string.
+to use other Tcl/Tk command, you can use `tk-call`.  It takes a command
+and arguments, and send it over to Tk process, then receives the result
+as a string.
 
     (tk-call 'expr "3 + 4") => "7"
 
