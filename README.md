@@ -71,7 +71,7 @@ value of the button, then change it.
 ## Graceful termination
 
 Since the Tk part (wish command) is a separate process from Gauche,
-it is possible that the Tk process remains after Gauche process
+it is possible that the Tk process remains after the Gauche process
 terminates.  Calling `tk-shutdown` terminates the Tk process.
 One way to ensure termination of Tk process is to set `exit-handler`
 in your application, e.g.:
@@ -106,7 +106,7 @@ to receive the parameters.
 
 The parameter names such as `%K` determines what kind of values it
 receives.  See the Tk document for the possible sequences.  Within
-the Scheme code, `%x` etc. are just an ordinary variables.
+the Scheme code, `%x` etc. are just ordinary variables.
 
 
 ## Talking to Tcl/Tk world
