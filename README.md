@@ -121,18 +121,18 @@ variable.
 
 Gauche-tk provides APIs corresponding to Tk commands available
 in Tcl/Tk 8.4 (e.g. `tk-bind` for `bind` Tk command).  If you want
-to use other Tcl/Tk command, you can use `do-tk`.  It takes a list
+to use other Tcl/Tk command, you can use `tk-call`.  It takes a list
 and send it over to Tk process, then receives the result as a string.
 
-    (do-tk '(expr "3 + 4")) => "7"
+    (tk-call 'expr "3 + 4") => "7"
 
 If an error occurs in the Tk side, `<tk-error>` condition is thrown
 in the Scheme world.
 
-    gosh> (do-tk '(expr "3 +"))
+    gosh> (tk-call 'expr "3 +")
     *** TK-ERROR: syntax error in expression "3 +": premature end of expression
 
-If you find you invoke some Tcl command via `do-tk` often enough,
+If you find you invoke some Tcl command via `tk-call` often enough,
 you can create a Scheme procedure to do so.
 
     (define-tk-command tk-expr expr)
@@ -173,7 +173,7 @@ hashtable.  Currently, this table won't be GC-ed.   For example,
 the following code changes the callback to the button ".b":
 
     (button ".b" :command (^[] (foo)))
-    (do-tk `(.b configure :command ,(^[] (bar))))
+    (tk-call ".b" 'configure :command (^[] (bar)))
 
 With this code, the initial callback `(^[] (foo))` remains in the
 hashtable even it will never be called again.  This will be an issue

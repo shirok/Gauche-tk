@@ -42,7 +42,7 @@
   (use util.match)
   (use parser.peg)
   (use srfi-13)
-  (export wish-path <tk-error> do-tk tk-parse-list tk-ref tk-set!
+  (export wish-path <tk-error> tk-call tk-parse-list tk-ref tk-set!
           tk-init tk-shutdown tk-mainloop tklambda
 
           define-tk-command
@@ -183,7 +183,7 @@
       (error <tk-error> results))))
 
 ;; API
-(define (do-tk command)
+(define (tk-call . command)
   (let1 args (map (^c (if (procedure? c)
                         (make <tk-callback> :proc c)
                         c))
@@ -212,9 +212,9 @@
 (define %tk-list ($many %tk-term))
 
 ;; API
-(define (tk-ref var) (do-tk `(gauche__tk__varref ,var)))
+(define (tk-ref var) (tk-call 'gauche__tk__varref var))
 ;; API
-(define (tk-set! var val) (do-tk `(set ,var ,val)))
+(define (tk-set! var val) (tk-call 'set var val))
 
 ;; API
 (define-syntax tklambda
@@ -288,7 +288,7 @@
   (syntax-rules ()
     [(_ name tkname)
      (define (name . args)
-       (do-tk (cons 'tkname args)))]))
+       (apply tk-call 'tkname args))]))
 (define-syntax define-tk-commands
   (syntax-rules ()
     [(_ (name tkname) ...)
