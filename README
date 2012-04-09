@@ -1,8 +1,10 @@
+# About Gauche-tk
+
 This is a simple Tk binding for Gauche.   It's so simple that you don't
 even need to compile this package---we invoke the 'wish' command (Tcl/Tk's
 interactive shell) and communicate to it via pipes.
 
-# Prerequisites
+## Prerequisites
 
 This module is using some features that are added after Gauche 0.9.2
 release.  If you are reading this before Gauche 0.9.3 release,
@@ -10,7 +12,8 @@ you need to use development HEAD of Gauche in order to use Gauche-tk.
 See http://practical-scheme.net/gauche/ for getting and compiling
 the HEAD.
 
-# A simple example
+
+## A simple example
 
     (use tk)
 
@@ -52,7 +55,7 @@ This runs the event loop in a separate thread, enabling you to
 keep working in REPL prompt.
 
 
-# Graceful termination
+## Graceful termination
 
 Since the Tk part (wish command) is a separate process from Gauche,
 it is possible that the Tk process remains after Gauche process
@@ -72,7 +75,7 @@ want to start over---call `tk-shutdown`, then `tk-init` again,
 gives you a fresh Tk process.
 
 
-# Callback parameters
+## Callback parameters
 
 Some callbacks needs to receive parameters; for example, mouse click
 event wants to know where the mouse cursor is.  In Tcl, it is handled
@@ -93,7 +96,7 @@ receives.  See the Tk document for the possible sequences.  Within
 the Scheme code, `%x` etc. are just an ordinary variables.
 
 
-# Talking to Tcl/Tk world
+## Talking to Tcl/Tk world
 
 Some APIs are provided to communicate with Tcl/Tk process.
 
@@ -139,7 +142,7 @@ you can create a Scheme procedure to do so.
 In fact, this is how `tk-bind` etc. is defined.
 
 
-# Troubleshooting
+## Troubleshooting
 
 When Gauche-tk module is loaded by `(use tk)`, Gauche scans paths in PATH
 to find 'wish' executable.  If it can't find one, `tk-init` will fail.
