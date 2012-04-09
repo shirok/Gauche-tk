@@ -143,6 +143,8 @@ In fact, this is how `tk-bind` etc. is defined.
 
 ## Troubleshooting
 
+### Path to wish
+
 When Gauche-tk module is loaded by `(use tk)`, Gauche scans paths in PATH
 to find 'wish' executable.  If it can't find one, `tk-init` will fail.
 In certain cases that you have 'wish' command in nonstandard location
@@ -153,6 +155,7 @@ to tell the path to the executable to Gauche.
 
 It should be executed before `tk-init`.
 
+### Dumping communication
 
 The wall of abstraction isn't strong enough and sometimes you need to
 dig into the low-level communication between Gauche and Tk.  There's
@@ -162,4 +165,27 @@ a hidden variable `*tk-debug*` that helps you to do so.
 
 After this, all communication between Tk and Gauche is dumped to
 stdout.
+
+### Avoiding leak
+
+Scheme closures passed as callbacks are registered in a global
+hashtable.  Currently, this table won't be GC-ed.   For example,
+the following code changes the callback to the button ".b":
+
+    (button ".b" :command (^[] (foo)))
+    (do-tk `(.b configure :command ,(^[] (bar))))
+
+With this code, the initial callback `(^[] (foo))` remains in the
+hashtable even it will never be called again.  This will be an issue
+if you change the registered callbacks too often.
+
+Fortunately, there's an easy workaround.  If you need to change
+callback behaviors, you change it in the Scheme side:
+
+    (define *callback* (^[] (foo)))
+    
+    (define (bridge) (*callback*))
+    (button ".b" :command bridge)
+    
+    (set! *callback* (^[] (bar)))
 
