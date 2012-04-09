@@ -109,7 +109,7 @@ interpret the returned string as you wish.
 Tcl string as a list.
 
     (tk-parse-list "{a b \"c d\" e} {f g}")
-      => (("a" "b" "c d" "e")("f g"))
+      => (("a" "b" "c d" "e")("f" "g"))
 
 `tk-set! varname value` sets the Tcl variable.  The `value`
 is converted to string before passed to Tcl.  Normally you want
