@@ -54,7 +54,7 @@
           tk-panedwindow tk-photo tk-place tk-radiobutton tk-raise
           tk-scale tk-scorllbar tk-selection tk-send tk-spinbox tk-text
           tk-tk tk-bisque tk-chooseColor tk-chooseDirectory tk-dialog
-          tk-focusFollowsMouse tk-focusNext tk-focusPrev tk-getOpenFiel
+          tk-focusFollowsMouse tk-focusNext tk-focusPrev tk-getOpenFile
           tk-getSaveFile tk-menuSetFocus tk-messageBox tk-optionMenu
           tk-popup tk-setPalette tk-textCopy tk-textCut tk-textPaste
           tk-tkerror tk-tkvars tk-tkwait tk-toplevel tk-winfo tk-wm))
@@ -344,7 +344,7 @@
   (tk-focusFollowsMouse tk_focusFollowsMouse)
   (tk-focusNext tk_focusNext)
   (tk-focusPrev tk_focusPrev)
-  (tk-getOpenFiel tk_getOpenFile)
+  (tk-getOpenFile tk_getOpenFile)
   (tk-getSaveFile tk_getSaveFile)
   (tk-menuSetFocus tk_menuSetFocus)
   (tk-messageBox tk_messageBox)
