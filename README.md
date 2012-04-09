@@ -60,7 +60,7 @@ keep working in REPL prompt.
 
 In Tcl/Tk, the `button .b` command creates a new command `.b`,
 which can be subsequently used to change the button's behavior
-and queries its attributes.  In Scheme, you need to use `tk-call`
+and to query its attributes.  In Scheme, you need to use `tk-call`
 command.  The following code first queries the current text
 value of the button, then change it.
 
