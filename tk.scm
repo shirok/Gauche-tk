@@ -42,8 +42,8 @@
   (use util.match)
   (use parser.peg)
   (use srfi-13)
-  (export wish-path <tk-error> tk-call tk-parse-list tk-ref tk-set!
-          tk-init tk-shutdown tk-mainloop tklambda
+  (export wish-path <tk-error> tk-call tk-parse-list tk-escape
+          tk-ref tk-set! tk-init tk-shutdown tk-mainloop tklambda
 
           define-tk-command
           tk-bell tk-bind tk-bindtags tk-bitmap tk-button tk-canvas
@@ -152,7 +152,7 @@
 ;; Scheme object -> Tcl object
 (define-method encode ((x <keyword>)) #`"-,x") ;; :foo => -foo
 (define-method encode ((x <boolean>)) (if x "1" "0"))
-(define-method encode ((x <string>))  (format "~s" x))
+(define-method encode ((x <string>))  (tk-escape (format "~s" x)))
 (define-method encode ((x <list>)) `("{",@(intersperse " "(map encode x))"}"))
 (define-method encode ((x <tk-callback>))
   `("\"gauche__tk__callback ",(x->integer (~ x'id))
@@ -210,6 +210,12 @@
                            ($or %tk-braced %tk-quoted %tk-word)
                            ($skip-many ($one-of #[\s]))))
 (define %tk-list ($many %tk-term))
+
+;; API
+;;  Escape special characters in a string when we want to pass a string
+;;  data literally to Tcl, without letting Tcl interpreting it again.
+(define (tk-escape string)
+  (regexp-replace-all* string #/[\[$]/ "\\\\0"))
 
 ;; API
 (define (tk-ref var) (tk-call 'gauche__tk__varref var))
