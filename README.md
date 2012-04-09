@@ -159,7 +159,7 @@ The wall of abstraction isn't strong enough and sometimes you need to
 dig into the low-level communication between Gauche and Tk.  There's
 a hidden variable `*tk-debug*` that helps you to do so.
 
-   (with-module tk (set! *tk-debug* #t))
+    (with-module tk (set! *tk-debug* #t))
 
 After this, all communication between Tk and Gauche is dumped to
 stdout.
