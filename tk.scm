@@ -215,7 +215,7 @@
 ;;  Escape special characters in a string when we want to pass a string
 ;;  data literally to Tcl, without letting Tcl interpreting it again.
 (define (tk-escape string)
-  (regexp-replace-all* string #/[\[$]/ "\\\\0"))
+  (regexp-replace-all* string #/[\[$]/ "\\\\\\0"))
 
 ;; API
 (define (tk-ref var) (tk-call 'gauche__tk__varref var))
