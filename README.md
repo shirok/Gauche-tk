@@ -104,8 +104,8 @@ to receive the parameters.
     (tk-bind "." '<Button-1> (tklambda (%x %y) (print #`"Clicked at (,%x ,%y)")))
     (tk-mainloop)
 
-The parameter names such as `%K` determines what kind of values it
-receives.  See the Tk document for the possible sequences.  Within
+The parameter name such as `%K` determines what kind of value it 
+receives.  See the Tk document for the available names.  Within
 the Scheme code, `%x` etc. are just ordinary variables.
 
 
