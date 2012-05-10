@@ -6,15 +6,7 @@ interactive shell) and communicate to it via pipes.
 
 ## Prerequisites
 
-This module is using some features that are added after Gauche 0.9.2
-release.  If you are reading this before Gauche 0.9.3 release,
-you need to use development HEAD of Gauche in order to use Gauche-tk.
-See http://practical-scheme.net/gauche/ for getting and compiling
-the HEAD.
-
-If you compile HEAD on Windows/MinGW, I'd recommend to configure it
-with --enable-threads=win32.
-
+Requires Gauche 0.9.3 or later.
 
 ## A simple example
 
