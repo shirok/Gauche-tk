@@ -107,6 +107,9 @@
 
 ;; wrap response from wish
 (define (wish-initialize tkproc)
+  (display "fconfigure stdin -encoding utf-8\n" (process-input tkproc))
+  (display "fconfigure stdout -encoding utf-8\n" (process-input tkproc))
+  (display "fconfigure stderr -encoding utf-8\n" (process-input tkproc))  
   (display "proc gauche__tk__do args {\n\
               set r [catch {eval $args} gauche__tk__result]  \n\
               set lines [split $gauche__tk__result \"\\n\"]  \n\
