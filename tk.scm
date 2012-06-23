@@ -57,7 +57,14 @@
           tk-focusFollowsMouse tk-focusNext tk-focusPrev tk-getOpenFile
           tk-getSaveFile tk-menuSetFocus tk-messageBox tk-optionMenu
           tk-popup tk-setPalette tk-textCopy tk-textCut tk-textPaste
-          tk-tkerror tk-tkvars tk-tkwait tk-toplevel tk-winfo tk-wm))
+          tk-tkerror tk-tkvars tk-tkwait tk-toplevel tk-winfo tk-wm
+
+          ttk-button ttk-checkbutton ttk-combobox ttk-entry ttk-frame
+          ttk-intro ttk-label ttk-labelframe ttk-menubutton ttk-notebook
+          ttk-sizegrip ttk-spinbox ttk-separator ttk-style ttk-treeview
+          ttk-panedwindow ttk-progressbar ttk-radiobutton ttk-scale
+          ttk-scrollbar ttk-widget ttk_image ttk_vsapi
+          ))
 (select-module tk)
 
 ;; This module enables Gauche programs to use Tk toolkit.  For the
@@ -376,5 +383,31 @@
   (tk-tkwait tkwait)
   (tk-toplevel toplevel)
   (tk-winfo winfo)
-  (tk-wm wm))
+  (tk-wm wm)
+  ;; Ttk widgets
+  (ttk-button ttk::button)
+  (ttk-checkbutton ttk:checkbutton)
+  (ttk-combobox ttk::combobox)
+  (ttk-entry ttk::entry)
+  (ttk-frame ttk::frame)
+  (ttk-intro ttk::intro)
+  (ttk-label ttk::label)
+  (ttk-labelframe ttk::labelframe)
+  (ttk-menubutton ttk::menubutton)
+  (ttk-notebook ttk::notebook)
+  (ttk-sizegrip ttk::sizegrip)
+  (ttk-spinbox ttk::spinbox)
+  (ttk-separator ttk::separator)
+  (ttk-style ttk::style)
+  (ttk-treeview ttk::treeview)
+  (ttk-panedwindow ttk::panedwindow)
+  (ttk-progressbar ttk::progressbar)
+  (ttk-radiobutton ttk::radiobutton)
+  (ttk-scale ttk::scale)
+  (ttk-scrollbar ttk::scrollbar)
+  (ttk-widget ttk::widget)
+  (ttk_image ttk_image)
+  (ttk_vsapi ttk_vsapi)
+  )
+
   
