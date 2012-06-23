@@ -107,31 +107,42 @@
 
 ;; wrap response from wish
 (define (wish-initialize tkproc)
-  (display "proc gauche__tk__do args {\n\
-              set r [catch {eval $args} gauche__tk__result]  \n\
-              set lines [split $gauche__tk__result \"\\n\"]  \n\
-              if { $r == 0 || $r == 2 } {                    \n\
-                puts \"ok\"                                  \n\
-              } {                                            \n\
-                puts \"error\"                               \n\
-              }                                              \n\
-              foreach l $lines {                             \n\
-                puts -nonewline \";\"                        \n\
-                puts $l                                      \n\
-              }                                              \n\
-              puts \"end\"                                   \n\
-            }\n" (process-input tkproc))
-  (display "proc gauche__tk__callback args {\n\
-              puts stderr $args             \n\
-            }\n" (process-input tkproc))
-  (display "proc gauche__tk__varref {name} {                 \n\
-              if {[info exists $name]} {                     \n\
-                upvar $name x                                \n\
-                return $x                                    \n\
-              } {                                            \n\
-                error \"no such variable: $name\"            \n\
-              }                                              \n\
-            }\n" (process-input tkproc))
+  (define (d s) (display s (process-input tkproc)))
+  ;; Make sure we communicate in the same encoding.  Fix from natsutan.
+  ;; NB: It seems that Tcl doesn't understand sjis; we fall back to ASCII.
+  (let1 enc (case (gauche-character-encoding)
+              [(utf-8) 'utf-8]
+              [(euc-jp) 'euc-jp]
+              [(none) 'iso8859-1]
+              [else 'ascii])
+    (d #`"fconfigure stdin -encoding ,enc\n")
+    (d #`"fconfigure stdout -encoding ,enc\n")
+    (d #`"fconfigure stderr -encoding ,enc\n"))
+  (d "proc gauche__tk__do args {\n\
+        set r [catch {eval $args} gauche__tk__result]  \n\
+        set lines [split $gauche__tk__result \"\\n\"]  \n\
+        if { $r == 0 || $r == 2 } {                    \n\
+          puts \"ok\"                                  \n\
+        } {                                            \n\
+          puts \"error\"                               \n\
+        }                                              \n\
+        foreach l $lines {                             \n\
+          puts -nonewline \";\"                        \n\
+          puts $l                                      \n\
+        }                                              \n\
+        puts \"end\"                                   \n\
+      }\n")
+  (d "proc gauche__tk__callback args {\n\
+        puts stderr $args             \n\
+      }\n")
+  (d "proc gauche__tk__varref {name} {                 \n\
+        if {[info exists $name]} {                     \n\
+          upvar $name x                                \n\
+          return $x                                    \n\
+        } {                                            \n\
+          error \"no such variable: $name\"            \n\
+        }                                              \n\
+      }\n")
   (flush (process-input tkproc)))
 
 (define (tk-debug fmt . args)
