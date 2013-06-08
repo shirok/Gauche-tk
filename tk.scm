@@ -38,7 +38,6 @@
   (use gauche.sequence)
   (use file.util)
   (use text.tree)
-  (use util.list)
   (use util.match)
   (use parser.peg)
   (use srfi-13)
