@@ -40,6 +40,7 @@
   (use text.tree)
   (use util.match)
   (use parser.peg)
+  (use parser.peg.deprecated)
   (use srfi-13)
   (export wish-path <tk-error> tk-call tk-parse-list tk-escape
           tk-ref tk-set! tk-init tk-shutdown tk-mainloop tklambda
@@ -214,8 +215,8 @@
 (define (tk-parse-list string)
   (peg-parse-string %tk-list string))
 
-;; NB: parser.peg is unofficial and their API may be changed at any time;
-;; these code will need to be rewritten in such a case.
+;; TODO: This refers old peg API in parser.peg.deprecated.
+;; Revise after Gauche 1.0 release.
 (define %tk-word ($->rope ($many1 ($or ($one-of #[^\\\s\{\}])
                                        ($seq ($char #\\) anychar)))))
 (define %tk-braced ($between ($char #\{) ($lazy %tk-list) ($char #\})))
