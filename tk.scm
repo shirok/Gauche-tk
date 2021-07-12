@@ -247,7 +247,7 @@
      (make <tk-callback>
        :proc (lambda (formals ...) body ...)
        :substs '(formals ...))]))
-     
+
 
 ;;;
 ;;; Initialization and main loop
@@ -409,5 +409,3 @@
   (ttk_image ttk_image)
   (ttk_vsapi ttk_vsapi)
   )
-
-  

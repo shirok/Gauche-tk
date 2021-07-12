@@ -29,6 +29,3 @@
 
   (tk-mainloop)
   0)
-
-
-

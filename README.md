@@ -96,7 +96,7 @@ to receive the parameters.
     (tk-bind "." '<Button-1> (tklambda (%x %y) (print #`"Clicked at (,%x ,%y)")))
     (tk-mainloop)
 
-The parameter name such as `%K` determines what kind of value it 
+The parameter name such as `%K` determines what kind of value it
 receives.  See the Tk document for the available names.  Within
 the Scheme code, `%x` etc. are just ordinary variables.
 
@@ -189,9 +189,8 @@ Fortunately, there's an easy workaround.  If you need to change
 callback behaviors, you change it in the Scheme side:
 
     (define *callback* (^[] (foo)))
-    
+
     (define (bridge) (*callback*))
     (button ".b" :command bridge)
-    
-    (set! *callback* (^[] (bar)))
 
+    (set! *callback* (^[] (bar)))

@@ -50,7 +50,7 @@
 
   ;; Textarea
   (tk-text '.t :bd 1)
-  
+
   (tk-pack '.m :expand 1 :fill 'x)
   (tk-pack '.t :expand 1 :fill 'both)
   (tk-tk 'appname "Edit")
