@@ -122,9 +122,9 @@
               [(euc-jp) 'euc-jp]
               [(none) 'iso8859-1]
               [else 'ascii])
-    (d #`"fconfigure stdin -encoding ,enc\n")
-    (d #`"fconfigure stdout -encoding ,enc\n")
-    (d #`"fconfigure stderr -encoding ,enc\n"))
+    (d #"fconfigure stdin -encoding ~enc\n")
+    (d #"fconfigure stdout -encoding ~enc\n")
+    (d #"fconfigure stderr -encoding ~enc\n"))
   (d "proc gauche__tk__do args {\n\
         set r [catch {eval $args} gauche__tk__result]  \n\
         set lines [split $gauche__tk__result \"\\n\"]  \n\
@@ -302,7 +302,7 @@
 ;; Background error handler.
 ;; TODO: Make this customizable!
 (define (tk-bgerror fmt . args)
-  (apply format (current-error-port) #`"TK Error: ,fmt" args))
+  (apply format (current-error-port) #"TK Error: ~fmt" args))
 
 ;;;
 ;;; For the convenience
