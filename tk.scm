@@ -168,7 +168,7 @@
   (set! (~ c'id) (atomic-update! (~ c'id-counter) (cut + <> 1))))
 
 ;; Scheme object -> Tcl object
-(define-method encode ((x <keyword>)) #`"-,x") ;; :foo => -foo
+(define-method encode ((x <keyword>)) #"-~(keyword->string x)") ;; :foo => -foo
 (define-method encode ((x <boolean>)) (if x "1" "0"))
 (define-method encode ((x <string>))  (tk-escape (format "~s" x)))
 (define-method encode ((x <list>)) `("{",@(intersperse " "(map encode x))"}"))
