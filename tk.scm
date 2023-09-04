@@ -52,7 +52,7 @@
           tk-grid tk-image tk-keysyms tk-label tk-labelframe tk-listbox
           tk-lower tk-menu tk-menubutton tk-option tk-options tk-pack
           tk-panedwindow tk-photo tk-place tk-radiobutton tk-raise
-          tk-scale tk-scorllbar tk-selection tk-send tk-spinbox tk-text
+          tk-scale tk-scrollbar tk-selection tk-send tk-spinbox tk-text
           tk-tk tk-bisque tk-chooseColor tk-chooseDirectory tk-dialog
           tk-focusFollowsMouse tk-focusNext tk-focusPrev tk-getOpenFile
           tk-getSaveFile tk-menuSetFocus tk-messageBox tk-optionMenu
@@ -355,7 +355,7 @@
   (tk-radiobutton radiobutton)
   (tk-raise raise)
   (tk-scale scale)
-  (tk-scorllbar scrollbar)
+  (tk-scrollbar scrollbar)
   (tk-selection selection)
   (tk-send send)
   (tk-spinbox spinbox)
