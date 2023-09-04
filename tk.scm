@@ -48,7 +48,7 @@
           define-tk-command
           tk-bell tk-bind tk-bindtags tk-bitmap tk-button tk-canvas
           tk-checkbutton tk-clipboard tk-colors tk-console tk-cursors
-          tk-destory tk-entry tk-event tk-focus tk-font tk-frame tk-grab
+          tk-destroy tk-entry tk-event tk-focus tk-font tk-frame tk-grab
           tk-grid tk-image tk-keysyms tk-label tk-labelframe tk-listbox
           tk-lower tk-menu tk-menubutton tk-option tk-options tk-pack
           tk-panedwindow tk-photo tk-place tk-radiobutton tk-raise
@@ -330,7 +330,7 @@
   (tk-colors colors)
   (tk-console console)
   (tk-cursors cursors)
-  (tk-destory destroy)
+  (tk-destroy destroy)
   (tk-entry entry)
   (tk-event event)
   (tk-focus focus)
